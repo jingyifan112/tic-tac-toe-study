@@ -1,1 +1,6 @@
-
+Manual compilation on macOS:
+cc train.c -o train -O3 -Wall -W -ffast-math -lm
+cc play.c -o play -O3 -Wall -W -ffast-math -lm
+Generated files:
+-rwxr-xr-x  1 jing1fan  staff    33K May 19 14:24 play
+-rwxr-xr-x  1 jing1fan  staff    34K May 19 14:24 train

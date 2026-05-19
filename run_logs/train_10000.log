@@ -1,0 +1,6 @@
+Training neural network with 10000 games
+Training neural network against 10000 random games...
+Games: 10000, Wins: 7852 (78.5%), Losses: 1191 (11.9%), Ties: 957 (9.6%)
+
+Training complete!
+Neural network saved to ttt_nn.bin
