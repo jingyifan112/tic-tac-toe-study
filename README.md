@@ -80,12 +80,3 @@ board state
 -> saved model
 -> interactive play
 ```
-
-## Possible extensions
-
-Possible next steps include:
-
-- comparing results with different training game counts
-- changing the hidden layer size
-- analyzing the reward design
-- reviewing the backpropagation implementation in more detail
