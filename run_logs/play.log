@@ -1,0 +1,3 @@
+Interactive play mode was tested with ./play.
+
+The trained neural network was loaded from ttt_nn.bin, and the terminal entered human-vs-computer tic-tac-toe mode. A screenshot of the play demo is saved in screenshots/play_demo.png.
