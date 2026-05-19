@@ -1,51 +1,45 @@
-# Tic-Tac-Toe Study
+# tic-tac-toe-study
 
-This repository documents my study and local run of a small reinforcement learning project that trains a simple neural network to play tic-tac-toe using C.
+This repo documents my study and reproduction of a small tic-tac-toe reinforcement learning project written in C.
 
-## Source
+The original implementation is from Arthur Chiao's tic-tac-toe reinforcement learning example. I used it as a learning project to understand how a simple neural network can be trained to play tic-tac-toe through repeated games and reward-based updates.
 
-Original article and code: Arthur Chiao's tic-tac-toe reinforcement learning project.
+## Overview
 
-This repository is my personal study and reproduction record. The original implementation is not my work. I used it to understand the neural network and reinforcement learning pipeline, then documented my run process and results.
+The project trains a small neural network to play tic-tac-toe:
 
-## What I studied
-
-The project implements a simple neural network for tic-tac-toe:
-
-- The 3x3 board is encoded into an 18-dimensional input vector.
-- The neural network has one hidden layer with 100 hidden units.
-- The output layer has 9 values, corresponding to the 9 board positions.
-- A softmax function converts the raw outputs into move probabilities.
-- During training, the neural network plays against a random opponent.
-- After each game, the final result is used as a reward signal.
+- The 3x3 board is encoded as neural network input.
+- The model outputs probabilities for the 9 possible move positions.
+- During training, the model plays against a random opponent.
+- After each game, the win/draw/loss result is used as the reward signal.
 - The model updates its weights through backpropagation.
 - The trained model is saved as `ttt_nn.bin`.
-- The play program loads the saved model and allows human-vs-computer play.
+- The `play` program loads the trained model for interactive play.
 
-## Main files reviewed
+## Files reviewed
 
-The original project contains three main files:
+The main files in the original project are:
 
-- `common.h`: shared game state, neural network structure, board encoding, forward pass, and move selection.
-- `train.c`: initializes the neural network, trains it against random games, and saves the trained parameters.
-- `play.c`: loads the trained neural network and starts the interactive tic-tac-toe game.
+- `common.h`: shared game logic, neural network structure, board encoding, forward pass, and move selection
+- `train.c`: model initialization, training loop, reward-based learning, and model saving
+- `play.c`: loading the trained model and running the interactive game
 
-## How I ran it
+## Reproduction steps
 
-I first tried to compile the project using the original `make` workflow. On macOS, the original Makefile command included `common.h` as a compiler input, which caused a clang error. I then compiled the two C files manually:
+I compiled the training and play programs locally with:
 
 ```bash
 cc train.c -o train -O3 -Wall -W -ffast-math -lm
 cc play.c -o play -O3 -Wall -W -ffast-math -lm
 ```
 
-After compilation, I ran a quick training test:
+Then I ran a short training test:
 
 ```bash
 ./train 10000
 ```
 
-Then I ran a larger training session:
+After confirming the training process worked, I ran a larger training session:
 
 ```bash
 ./train 2000000
@@ -63,49 +57,35 @@ Finally, I tested the interactive play mode:
 ./play
 ```
 
-## Run logs
+## Results
 
-I saved terminal outputs in the `run_logs/` folder:
+The code compiled successfully, the model trained successfully, and the interactive tic-tac-toe play mode ran in the terminal.
 
-- `make.log`: manual compilation output on macOS
-- `train_10000.log`: quick training test output
-- `train_2000000.log`: full training output
-- `model_file_after_10000.log`: model file check after quick training
-- `play.log`: interactive play output or play-mode note
-
-## Screenshot
-
-The `screenshots/` folder contains a terminal screenshot of the interactive play demo.
-
-## Result
-
-I successfully compiled the C code, trained the tic-tac-toe neural network, generated the model file, and tested the interactive play mode in the terminal.
-
-In the 2,000,000-game training run, the model reached a high win rate against the random opponent and saved the trained neural network to `ttt_nn.bin`.
+The `run_logs/` folder contains the compilation and training logs, and `screenshots/play_demo.png` shows the interactive play demo.
 
 ## Learning summary
 
-The full pipeline is:
+This project helped me understand the basic reinforcement learning workflow in a small and readable C implementation:
 
 ```text
 board state
 -> input encoding
 -> neural network forward pass
 -> move probability output
--> choose the best legal move
--> finish one game
--> assign reward based on win/draw/loss
+-> legal move selection
+-> game result
+-> reward signal
 -> backpropagation
--> update weights
--> save trained model
--> load model for interactive play
+-> weight update
+-> saved model
+-> interactive play
 ```
 
-## Next steps
+## Possible extensions
 
-If I have more time, I would like to:
+Possible next steps include:
 
-- Compare model behavior after different training game counts.
-- Study the reward design in more detail.
-- Modify the hidden layer size and observe the effect.
-- Review the backpropagation implementation line by line.
+- comparing results with different training game counts
+- changing the hidden layer size
+- analyzing the reward design
+- reviewing the backpropagation implementation in more detail
